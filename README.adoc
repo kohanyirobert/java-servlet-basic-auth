@@ -1,0 +1,30 @@
+= Java Servlet Basic Auth
+
+This is a demonstration of a web-application that protects pages/resources with https://en.wikipedia.org/wiki/Basic_access_authentication[HTTP Basic Auth].
+
+It consists of a
+
+* http://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html[Filter],
+* and a http://docs.oracle.com/javaee/7/api/javax/servlet/Servlet.html[Servlet].
+
+== Filter
+
+Intercepts requests to
+
+* `/basic` -- `../basic`
+* `/basic/*` -- `../basic/index`, `../basic/link`
+* `/basic/**` -- `../basic/error.html`
+
+*Allows* intercepted requests to pass-through the filter that contains a valid username/password combination the required HTTP headers (as mandated by the HTTP Basic Auth specification).
+
+*Denies* intercepted requests otherwise.
+
+== Servlet
+
+* `/` loads `index.html` which isn't protected.
+* `/basic` redirects to `/basic/index`.
+* `/basic/index` returns the contents of `basic/index.html`,
+* `/basic/link` returns the contents of `basic/link.html`.
+* `/basic/<anything>` returns the contents of `basic/error.html`.
+
+IMPORTANT: Please note, that the contents of the HTML files are _loaded_, returned in the response -- no _redirect_ happens.
