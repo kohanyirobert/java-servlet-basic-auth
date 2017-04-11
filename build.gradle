@@ -1,0 +1,18 @@
+plugins {
+    id 'org.akhikhl.gretty' version '1.4.2'
+}
+
+apply plugin: 'war'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+}
+
+gretty {
+    servletContainer = 'tomcat8'
+    contextPath = '/'
+}
