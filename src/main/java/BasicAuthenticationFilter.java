@@ -43,7 +43,7 @@ public class BasicAuthenticationFilter implements Filter {
         String encoded = authorization.substring(prefix.length());
         byte[] bytes = DECODER.decode(encoded);
         String decoded = new String(bytes, StandardCharsets.UTF_8);
-        return "admin:s3cr3t".equals(decoded);
+        return "admin:admin".equals(decoded);
     }
 
     @Override
